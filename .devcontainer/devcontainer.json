@@ -1,0 +1,16 @@
+{
+    "name": "DataSynergy",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "app",
+    "workspaceFolder": "./workspace",
+    "customizations": {
+        "vscode": {
+            "settings": {},
+            "extensions": [
+                "ms-python.python",
+                "ms-azuretools.vscode-docker"
+            ]
+        }
+    }
+    // "postCreateCommand": "sleep 30 && /opt/mssql-tools/bin/sqlcmd -S sqlserver -U SA -P 'YourStrong!Passw0rd' -i /docker-entrypoint-initdb.d/instnwnd.sql"
+}

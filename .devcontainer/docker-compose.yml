@@ -1,0 +1,25 @@
+version: '1.0'
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: mssql
+    environment:
+      - ACCEPT_EULA: Y
+      - MSSQL_SA_PASSWORD: A4Vbaib9&yUrRjiuRixoyKR^T
+    ports:
+      - 1433:1433
+    volumes:
+      - sql_data:/var/opt/mssql
+
+  app:
+    build: .
+    container_name: app
+    volumes:
+      - .:/workspace
+    depends_on:
+      - mssql
+    command: python main.py
+
+
+volumes:
+  sql_data:
