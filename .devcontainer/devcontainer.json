@@ -2,15 +2,41 @@
     "name": "DataSynergy",
     "dockerComposeFile": "docker-compose.yml",
     "service": "app",
-    "workspaceFolder": "./workspace",
+    "workspaceFolder": "/workspace",
     "customizations": {
         "vscode": {
-            "settings": {},
+            "settings": {
+                "python.defaultInterpreterPath": "/usr/local/bin/python",
+                "black-formatter.args": [
+                    "-t py312",
+                    "-l 78"
+                ],
+                "black-formatter.cwd": "${workspaceFolder}/src",
+                "editor.defaultFormatter": "ms-python.black-formatter",
+                "python.formatting.blackPath": "/usr/local/py-utils/bin/black",
+                "python.languageServer": "Pylance",
+                "mssql.connections": [
+                    {
+                        "server": "mssql,1433",
+                        "database": "{{put-database-name-here}}",
+                        "authenticationType": "SqlLogin",
+                        "user": "sa",
+                        "password": "A4Vbaib9&yUrRjiuRixoyKRT",
+                        "options": {
+                            "encrypt": true,
+                            "trustServerCertificate": true
+                        }
+                    }
+                ]
+            },
             "extensions": [
-                "ms-python.python",
+                "ms-python.black-formatter",
+                "ms-python.vscode-pylance",
+                "ms-mssql.mssql",
                 "ms-azuretools.vscode-docker"
             ]
         }
-    }
-    // "postCreateCommand": "sleep 30 && /opt/mssql-tools/bin/sqlcmd -S sqlserver -U SA -P 'YourStrong!Passw0rd' -i /docker-entrypoint-initdb.d/instnwnd.sql"
+    },
+    "postCreateCommand": "echo 'Shevan'",
+    "remoteUser": "vscode"
 }

@@ -1,25 +1,26 @@
-version: '1.0'
+version: '1'
+
 services:
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - ..:/workspace
+    working_dir: /workspace
+    command: sleep infinity
   mssql:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: mssql
+    restart: unless-stopped
     environment:
-      - ACCEPT_EULA: Y
-      - MSSQL_SA_PASSWORD: A4Vbaib9&yUrRjiuRixoyKR^T
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "A4Vbaib9&yUrRjiuRixoyKRT"
+      MSSQL_PID: Developer
     ports:
       - 1433:1433
     volumes:
       - sql_data:/var/opt/mssql
-
-  app:
-    build: .
-    container_name: app
-    volumes:
-      - .:/workspace
-    depends_on:
-      - mssql
-    command: python main.py
-
 
 volumes:
   sql_data:
